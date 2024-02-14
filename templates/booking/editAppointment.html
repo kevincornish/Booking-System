@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Appointment
+{% endblock %}
+
+{% block content %}
+{% if delta24 == True %}
+<h1>Edit Appointment</h1>
+
+<div>
+    <form method="post" action="{% url 'editAppointment' id %}" required>
+        {% csrf_token %}
+            <div>
+                <h3>Select Day:</h3>
+                <select name="day">
+                    {% for validateWeekday in validateWeekdays %}
+                    <option value="{{validateWeekday}}">{{validateWeekday}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <br/>
+            <button type="submit">Continue</button>
+        </div>
+    </form>
+</div>
+<!--else if 24hrs bfr editing-->
+{% else %}
+<div>
+    <h1>Editing Appointments is Only Available 24hrs Before Appointment!</h1>
+    <a href="{% url 'userPanel' %}">back to profile</a>
+</div>
+
+{% endif %}
+
+{% endblock %}

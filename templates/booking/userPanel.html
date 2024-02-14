@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+user profile
+{% endblock %}
+
+{% block content %}
+<h1>user profile</h1>
+
+<div>
+    <ul>
+            <li>First Name: {{ user.first_name }}</li>
+            <li>Last Name: {{ user.last_name }}</li>
+            <li>Username: {{ user.username }}</li>
+    </ul>
+</div>
+
+{% if appointments %}
+<div>
+    <h1>Appointments:</h1>
+    <div>
+        {% for appointment in appointments %}
+        <div>
+            <p>Day: {{ appointment.day }}</p>
+            <p>Time: {{ appointment.time }}</p>
+            <div>
+                <a href="{% url 'editAppointment' appointment.id %}">Edit Appointment</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

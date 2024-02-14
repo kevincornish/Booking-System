@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Book a slot
+{% endblock %}
+
+{% block content %}
+<h1>book a slot</h1>
+
+<div>
+    <form method="post" action="{% url 'bookingSubmit' %}" required>
+        {% csrf_token %}
+        <h3>Time:</h3>
+        <div>
+            <select name="time">
+                {% for time in times %}
+                <option value="{{time}}">{{time}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+{% endblock %}

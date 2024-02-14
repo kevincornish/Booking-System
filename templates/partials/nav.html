@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+hi, {{ user }}   <a href="{% url 'logout' %}">logout</a> 
+- <a href="{% url 'booking' %}">book a slot</a> 
+{% if request.user.is_staff %}
+- <a href="{% url 'staffAppointments' %}">Staff Panel</a>
+{% endif %}
+- <a href="{% url 'userPanel' %}">User Panel</a>
+  {% else %}
+  <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'signup' %}">Sign up</a>
+  {% endif %}
